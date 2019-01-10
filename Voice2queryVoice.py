@@ -246,7 +246,7 @@ def main():
         return_text = queryByVoice()
         print("return : ", return_text)
         file_name = "./testtts.wav"
-        return_test = getText2VioceStream(return_text,file_name)
+        return_test = getText2VoiceStream(return_text,file_name)
         print("return test", return_test)
         play_file(file_name)
 
