@@ -6,7 +6,7 @@ var sensor = require('node-dht-sensor');
 
 // 스피커의 초기값을 넣어줍니다.
 const fs = require('fs');
-const soundBuffer = fs.readFileSync('/home/pi/ai-makers-kit/data/sample_sound.wav'); //'띠리링' 소리의 파일을 지정해 줍니다.
+const soundBuffer = fs.readFileSync('../data/sample_sound.wav'); //'띠리링' 소리의 파일을 지정해 줍니다.
 const pcmplay = new Speaker({
 	channels: 1,
 	bitDepth: 16,
@@ -30,20 +30,12 @@ let ktkws=null;
 if(nodeVersion === 'v6') ktkws = require('./ktkws');
 else if(nodeVersion === 'v8') ktkws = require('./ktkws_v8');
 
-gpio.setup(31, gpio.DIR_LOW, write); // GPIO(버튼 LED)를 출력 모드로 설정합니다.
-
-function write(err) {
-	if(err) console.log('write Error:'+err);
-};
-
-
 const json_path = '/home/pi/Downloads/clientKey.json'; // 개발자 콘솔에서 다운로드 받은 clinetKey.json의 경로를 적어 줍니다.
 const cert_path = '../data/ca-bundle.pem';
 const proto_path = '../data/gigagenieRPC.proto';
 
 const kwstext = ['기가지니','지니야','친구야','자기야'];
 const kwsflag = parseInt(process.argv[2]);
-
 
 ktkws.initialize('../data/kwsmodel.pack');
 ktkws.startKws(kwsflag);
